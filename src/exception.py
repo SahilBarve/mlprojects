@@ -1,5 +1,6 @@
 # Will write all the exceptions here
-import sys 
+import sys
+from logger import logging
 '''The Python sys module provides access to variables and functions that interact closely with the Python interpreter 
 and runtime environment'''
 
@@ -8,8 +9,8 @@ def error_message_detail(error,error_detail:sys):
   file_name=exc_tb.tb_frame.f_code.co_filename 
   error_message=("Error occured in python script name [{0}] line number [{1}] error messsage[{2}]").format(
     file_name,exc_tb.tb_lineno,str(error)
-  )
-return error_message   
+   )
+  return error_message   
 
   # error_detail:sys means error detail should contain sys module
   # exc_info will tell all the info about the error that we get,# exc_info() returns exception type, value, and traceback
@@ -39,3 +40,15 @@ and whenever we use this __str__ function it prints the object attribute that is
  
 # so now whenever in cache block we raise custom exception this message will popup that is what is the filename
 # where exception occured , at what line it occured and it will display the error message along with the error
+
+#We use the main functio for checking if the file is working or not
+'''
+if __name__=="__main__" :# used to just see if everything is working fine or not
+  try:
+    a=1/0
+  except Exception as e:
+    logging.info("Divide by Zero")
+    raise CustomException(e,sys)
+'''
+# For running this use command python src/excption.py in terminal and it will display an Divide by Zero error message
+
