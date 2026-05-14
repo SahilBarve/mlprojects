@@ -1,6 +1,6 @@
 # Will write all the exceptions here
 import sys
-from logger import logging
+from src.logger import logging
 '''The Python sys module provides access to variables and functions that interact closely with the Python interpreter 
 and runtime environment'''
 
@@ -50,5 +50,5 @@ if __name__=="__main__" :# used to just see if everything is working fine or not
     logging.info("Divide by Zero")
     raise CustomException(e,sys)
 '''
-# For running this use command python src/excption.py in terminal and it will display an Divide by Zero error message
+# For running this use command python -m  src.excption in terminal and it will display an Divide by Zero error message
 

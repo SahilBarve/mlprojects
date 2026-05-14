@@ -1,0 +1,6 @@
+What the colors mean on the left side of the codef
+🟢 Green line — a new line that was added since the last Git commit
+🔵 Blue line — a line that was modified
+🔴 Red triangle — a line that was deleted
+
+# pip stands for Package Installer for Python
