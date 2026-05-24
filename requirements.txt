@@ -11,3 +11,4 @@ xgboost
 #everytime we run it , it will create a package back again and again''' 
 # command to run it is pip install -r .\requirements.txt (-r “read requirements from file”) 
 # -m is used for running modules
+#-u is used for?12:11 PMIn the context of Python and pip, -u or --upgrade is used to upgrade a package to the latest version.
