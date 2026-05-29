@@ -98,25 +98,6 @@ class DataTransformation:
 
     except Exception as e :
       raise CustomException(e,sys)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 '''Feature Enginnering means creating new features for example total_score=maths_score+english-score and so '''
 #Our dataset has features of various types like numeric and categorical so we need to perform data transformation on them
 # We also need to do feature engineering , and we do it here in data transformation
