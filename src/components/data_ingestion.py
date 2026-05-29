@@ -7,7 +7,11 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
-@dataclass
+from src.components.data_transformation import DataTransformation # We call this after we have successfully done the data transformation part 
+from src.components.data_transformation import DataTransformationConfig# Same with this its use for data-transformation_configuration
+
+
+@dataclass# this class is a dataclass and it will automatically generate __init__ and __repr__ functions for us
 class DataIngestionConfig:
   train_data_path: str=os.path.join('artifacts',"train.csv")
   test_data_path: str=os.path.join('artifacts',"test.csv")
@@ -15,7 +19,7 @@ class DataIngestionConfig:
 
 class DataIngestion:# Here we dont use @dataclass cause we dont just need variables 
   def __init__(self):
-    self.ingestion_congif=DataIngestionConfig()
+    self.ingestion_config=DataIngestionConfig()
 
   def initiate_data_ingestion(self):
     logging.info("Entered the data ingestion method or component")
@@ -25,62 +29,34 @@ class DataIngestion:# Here we dont use @dataclass cause we dont just need variab
 
       logging.info('Read the dataset as dataframe')
 
-      os.makedirs(os.path.dirname(self.ingestion_congif.train_data_path),exist_ok=True)
+      os.makedirs(os.path.dirname(self.ingestion_config.train_data_path),exist_ok=True)
 
-      df.to_csv(self.ingestion_congif.raw_data_path,index=False,header=True)#header is True by default as well
+      df.to_csv(self.ingestion_config.raw_data_path,index=False,header=True)#header is True by default as well
 
       logging.info("Train Test Split initiated")
       train_set,test_set=train_test_split(df,test_size=0.2,random_state=42)
 
-      train_set.to_csv(self.ingestion_congif.train_data_path,index=False,header=True)
+      train_set.to_csv(self.ingestion_config.train_data_path,index=False,header=True)
 
-      test_set.to_csv(self.ingestion_congif.test_data_path,index=False,header=True)
+      test_set.to_csv(self.ingestion_config.test_data_path,index=False,header=True)
 
       logging.info("Ingestion of data is completed")
       
       return(
-        self.ingestion_congif.train_data_path,
-        self.ingestion_congif.test_data_path
+        self.ingestion_config.train_data_path,
+        self.ingestion_config.test_data_path
       )
     except Exception as e:
       raise CustomException(e,sys)
 if __name__=="__main__":
   obj=DataIngestion()
-  obj.initiate_data_ingestion()
+  train_data,test_data=obj.initiate_data_ingestion()# Earlier before data transformation we did this i.e we initiate a object for data ingestion obj.initiate_data_ingestion()  
+#obj.initiate_data_ingestion() this function returns train and test data path Those paths usually point to the files created/extracted during the data ingestion step.
+# Now we will call all the data transformation functions here in the data ingestion file
+  data_transformation=DataTransformation()
+  data_transformation.initiate_data_transformation(train_data,test_data)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+'''Here we basically combined data ingetion and then data transformation (from that __name__ statement)'''
 #Data ingestion = taking data from different sources and bringing it into a system.
 # In data ingestion we will take data from various data sources like  various databases (like mongodb),hadoop and read it from them 
 # Dataclasses is used here for creating class variables 

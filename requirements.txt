@@ -5,6 +5,7 @@ matplotlib
 scikit-learn
 catboost
 xgboost
+dill
 #-e.
 
 #Note: Whenever we are trying to install new libraries and packages just comment the .-e or else 
