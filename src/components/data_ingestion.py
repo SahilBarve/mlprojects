@@ -10,6 +10,10 @@ from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation # We call this after we have successfully done the data transformation part 
 from src.components.data_transformation import DataTransformationConfig# Same with this its use for data-transformation_configuration
 
+from src.components.model_trainer import ModelTrainerConfig# Used for testing the model we trained in model_trainer
+from src.components.model_trainer import ModelTrainer
+
+
 
 @dataclass# this class is a dataclass and it will automatically generate __init__ and __repr__ functions for us
 class DataIngestionConfig:
@@ -54,7 +58,11 @@ if __name__=="__main__":
 #obj.initiate_data_ingestion() this function returns train and test data path Those paths usually point to the files created/extracted during the data ingestion step.
 # Now we will call all the data transformation functions here in the data ingestion file
   data_transformation=DataTransformation()
-  data_transformation.initiate_data_transformation(train_data,test_data)
+  train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
+
+modelTrainer=ModelTrainer()
+print(modelTrainer.initiate_model_trainer(train_arr,test_arr))
+
 
 '''Here we basically combined data ingetion and then data transformation (from that __name__ statement)'''
 #Data ingestion = taking data from different sources and bringing it into a system.
