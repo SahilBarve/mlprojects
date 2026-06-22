@@ -13,7 +13,7 @@ def save_object(file_path,obj):
     dir_path=os.path.dirname(file_path)
 
     os.makedirs(dir_path,exist_ok=True)
-
+    # file_obj is just a variable name that refers to the opened file.
     with open(file_path,"wb")as file_obj:# This is used to open the file and then close the file once the work is done no need to write file_obj.close()
       dill.dump(obj,file_obj)#dill is similar to pickle but more powerful.
   except Exception as e:
@@ -49,4 +49,10 @@ def evaluate_model(X_train, y_train, X_test, y_test, models,param):
 
     except Exception as e:
         raise CustomException(e, sys)
-
+    
+def load_object(file_path):
+   try:
+      with open(file_path,"rb")as file_obj:
+         return dill.load(file_obj)
+   except Exception as e:
+      raise CustomException(e,sys)
