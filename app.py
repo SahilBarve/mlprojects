@@ -38,7 +38,7 @@ def predict_datapoint():# Will do everything here
 # For running the code
 
 if __name__=='__main__':  # "Run the code below only if this file is executed directly." This prevents Flask from starting automatically when the file is imported somewhere else.
-  app.run(host="0.0.0.0",debug=True) # app.run() starts the flask web server and listens for requests such as http://127.0.0.1:5000 and executes your routes
+  app.run(host="0.0.0.0") # app.run() starts the flask web server and listens for requests such as http://127.0.0.1:5000 and executes your routes
                                      # host="0.0.0.0." means other devices not only this on the same network can access it without this only the local device can access it
 
 ''' Run the file by python app.py then open the crome and type 127.0.0.1:5000/ this will open the home page 
